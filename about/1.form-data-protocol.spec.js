@@ -17,4 +17,23 @@ describe('Form data protocol', () => {
             ]
         });
     });
+    it('can parse single line data of two fields', () => {
+        let form = parse({ incoming: `
+            -----token
+            Content-Disposition:form-data;name=one
+            
+            111
+            -----token
+            Content-Disposition:form-data;name=two
+            
+            222
+            -----token--
+        `});
+        expect(form).to.deep.equal({
+            data: [
+                { name: 'one', value: '111' },
+                { name: 'two', value: '222' }
+            ]
+        });
+    });
 });
