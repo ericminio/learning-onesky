@@ -5,11 +5,11 @@ describe('Form data protocol', () => {
     
     it('can parse single line data of one field', () => {
         let form = parse({ incoming: `
-            -----token\n
-            Content-Disposition:form-data;name=field\n
-            \n
-            any content\n
-            -----token--\n
+            -----token
+            Content-Disposition:form-data;name=field
+            
+            any content
+            -----token--
         `});
         expect(form).to.deep.equal({
             data: [
