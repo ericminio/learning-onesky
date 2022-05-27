@@ -1,0 +1,15 @@
+{
+  "name": "about",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ready.spec.js",
+  "scripts": {
+    "test": "mocha *.spec.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0"
+  }
+}
