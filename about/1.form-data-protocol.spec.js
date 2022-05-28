@@ -4,21 +4,21 @@ const { parse } = require('../lib/form-data-protocol');
 describe('Form data protocol', () => {
     
     it('can parse single line data of one field', () => {
-        let form = parse({ incoming: `
+        let data = parse({ incoming: `
             -----token
             Content-Disposition:form-data;name=field
             
             any content
             -----token--
         `});
-        expect(form).to.deep.equal({
-            data: [
+        expect(data).to.deep.equal({
+            form: [
                 { name: 'field', value: 'any content' }
             ]
         });
     });
     it('can parse single line data of two fields', () => {
-        let form = parse({ incoming: `
+        let data = parse({ incoming: `
             -----token
             Content-Disposition:form-data;name=one
             
@@ -29,8 +29,8 @@ describe('Form data protocol', () => {
             222
             -----token--
         `});
-        expect(form).to.deep.equal({
-            data: [
+        expect(data).to.deep.equal({
+            form: [
                 { name: 'one', value: '111' },
                 { name: 'two', value: '222' }
             ]
