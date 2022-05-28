@@ -4,7 +4,7 @@ const { parse } = require('../lib/form-data-protocol');
 describe('Form data protocol', () => {
     
     it('can parse single line data of one field', () => {
-        let data = parse({ incoming: `
+        let data = parse({ payload: `
             -----token
             Content-Disposition:form-data;name=field
             
@@ -18,7 +18,7 @@ describe('Form data protocol', () => {
         });
     });
     it('can parse single line data of two fields', () => {
-        let data = parse({ incoming: `
+        let data = parse({ payload: `
             -----token
             Content-Disposition:form-data;name=one
             
