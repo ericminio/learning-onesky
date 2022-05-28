@@ -36,4 +36,24 @@ describe('Form data protocol', () => {
             ]
         });
     });
+    it('can parse file info', () => {
+        let data = parse({ payload: `
+            -----token
+            Content-Disposition:form-data;name=field;filename=hello.txt
+            Content-Type:text/plain
+            
+            any content
+            -----token--
+        `});
+        expect(data).to.deep.equal({
+            form: [
+                { 
+                    name: 'field', 
+                    value: 'any content',
+                    fileName: 'hello.txt',
+                    contentType: 'any content'
+                }
+            ]
+        });
+    });
 });
