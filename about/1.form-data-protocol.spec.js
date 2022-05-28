@@ -115,4 +115,25 @@ describe('Form data protocol', () => {
             ]
         });
     });
+    it('resists Chrome', () => {
+        let data = parse({ payload: ''
+            + '------WebKitFormBoundarySZQKHDCpRCnNKWS5\n'
+            + 'Content-Disposition: form-data; name=\"one\"; filename=\"hello.txt\"\n'
+            + 'Content-Type: text/plain\n'
+            + '\n'
+            + 'hello\n'
+            + '\n'
+            +'------WebKitFormBoundarySZQKHDCpRCnNKWS5--\n'
+        });
+        expect(data).to.deep.equal({
+            form: [
+                { 
+                    name: 'one', 
+                    value: 'hello',
+                    fileName: 'hello.txt',
+                    contentType: 'text/plain'
+                }
+            ]
+        });
+    });
 });
