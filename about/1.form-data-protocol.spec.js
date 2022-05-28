@@ -56,4 +56,20 @@ describe('Form data protocol', () => {
             ]
         });
     });
+    it('can parse multi lines content', () => {
+        let data = parse({ payload: `
+            -----token
+            Content-Disposition:form-data;name=field
+            
+            any content
+            with several
+            lines
+            -----token--
+        `});
+        expect(data).to.deep.equal({
+            form: [
+                { name: 'field', value: 'any content\nwith several\nlines' }
+            ]
+        });
+    });
 });
