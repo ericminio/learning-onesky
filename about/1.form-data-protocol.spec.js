@@ -81,13 +81,34 @@ describe('Form data protocol', () => {
             + 'any content\r\n'
             + 'with several\r\n'
             + 'lines\r\n'
-            +' -----token--\r\n'
+            + '-----token--\r\n'
         });
         expect(data).to.deep.equal({
             form: [
                 { 
                     name: 'field', 
                     value: 'any content\nwith several\nlines',
+                    fileName: 'hello.txt',
+                    contentType: 'text/plain'
+                }
+            ]
+        });
+    });
+    it('resists Firefox', () => {
+        let data = parse({ payload: ''
+            + '-----------------------------191462173837912382272006659563\n'
+            + 'Content-Disposition: form-data; name=\"one\"; filename=\"hello.txt\"\n'
+            + 'Content-Type: text/plain\n'
+            + '\n'
+            + 'hello\n'
+            + '\n'
+            +'-----------------------------191462173837912382272006659563--\n'
+        });
+        expect(data).to.deep.equal({
+            form: [
+                { 
+                    name: 'one', 
+                    value: 'hello',
                     fileName: 'hello.txt',
                     contentType: 'text/plain'
                 }
