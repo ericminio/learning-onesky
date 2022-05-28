@@ -51,7 +51,7 @@ describe('Form data protocol', () => {
                     name: 'field', 
                     value: 'any content',
                     fileName: 'hello.txt',
-                    contentType: 'any content'
+                    contentType: 'text/plain'
                 }
             ]
         });
