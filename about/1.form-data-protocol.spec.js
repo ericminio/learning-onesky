@@ -72,4 +72,26 @@ describe('Form data protocol', () => {
             ]
         });
     });
+    it('resists extended line end separator', () => {
+        let data = parse({ payload: ''
+            + '-----token\r\n'
+            + 'Content-Disposition:form-data;name=field;filename=hello.txt\r\n'
+            + 'Content-Type:text/plain\r\n'
+            + '\r\n'
+            + 'any content\r\n'
+            + 'with several\r\n'
+            + 'lines\r\n'
+            +' -----token--\r\n'
+        });
+        expect(data).to.deep.equal({
+            form: [
+                { 
+                    name: 'field', 
+                    value: 'any content\nwith several\nlines',
+                    fileName: 'hello.txt',
+                    contentType: 'text/plain'
+                }
+            ]
+        });
+    });
 });
