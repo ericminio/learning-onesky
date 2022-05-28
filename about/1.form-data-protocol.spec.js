@@ -39,8 +39,8 @@ describe('Form data protocol', () => {
     it('can parse file info', () => {
         let data = parse({ payload: `
             -----token
-            Content-Disposition:form-data;name=field;filename=hello.txt
-            Content-Type:text/plain
+            Content-Disposition: form-data; name=field; filename=hello.txt
+            Content-Type: text/plain
             
             any content
             -----token--
