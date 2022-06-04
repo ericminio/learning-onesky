@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { Server } = require('../../support/server');
+const { Server } = require('./server');
 const extractPayload = require('../../lib/extract-payload');
 const request = require('../../lib/request');
 

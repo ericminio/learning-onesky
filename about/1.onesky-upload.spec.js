@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const { upload } = require('../lib/onesky');
-const { Server } = require('../support/server');
+const { Server } = require('./more/server');
 const extractPayload = require('../lib/extract-payload');
 const { parse } = require('../lib/form-data-protocol');
 const port = 5001;
