@@ -4,7 +4,7 @@
   "description": "",
   "main": "ready.spec.js",
   "scripts": {
-    "test": "mocha *.spec.js"
+    "test": "mocha './{,!(node_modules)/**}/*.spec.js'"
   },
   "author": "",
   "license": "MIT",
